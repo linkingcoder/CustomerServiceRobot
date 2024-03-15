@@ -1,0 +1,36 @@
+﻿# 脚本5
+Step welcome
+Speak $name + "你好，我能为你做什么?"
+Listen 5, 20
+Branch "存钱", saveProc
+Branch "投诉", complainProc
+Silence silenceProc
+Default defaultProc
+Step saveProc
+Speak $name + "您的账户已从绑定的微信钱包中提出并存入3000元，感谢您的来电，再见"
+Save 3000
+Default finish
+Step finish
+Speak "服务完成"
+Exit
+Step complainProc
+Speak "对不起，请问服务哪里有不周到的地方，欢迎您提出意见！"
+Silence implore
+Default thanks
+Step implore
+Speak "请您一定提出意见"
+Listen 5, 25
+Exit
+Step thanks
+Speak "感谢您提出的意见，我们会改进的"
+Exit
+Step silenceProc
+Speak "听不清，请您大声一点可以吗"
+Listen 5, 20
+Branch "存钱", saveProc
+Branch "投诉", complainProc
+Silence silenceProc
+Default defaultProc
+Step defaultProc
+Speak "谢谢惠顾"
+Exit
